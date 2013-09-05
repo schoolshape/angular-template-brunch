@@ -4,8 +4,8 @@ module.exports = class HtmlTempalate
     extension: 'html'
 
     constructor: (config) ->
-        if config.ngTemplate != undefined
-            @templateDir = config.ngTemplate.template
+        if config.plugins.ngTemplate != undefined
+            @templateDir = config.plugins.ngTemplate.template
             if @templateDir.slice(-1) != "/"
                 @templateDir=@templateDir + "/"
         else

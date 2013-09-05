@@ -3,10 +3,17 @@ module.exports = class HtmlTempalate
     type: 'template'
     extension: 'html'
 
-    constructor: (@config) ->
-        @templateDir = config.ngTemplate?.template or "_template"
+    constructor: (config) ->
+        if config.ngTemplate != undefined
+            @templateDir = config.ngTemplate.template
+            if @templateDir.slice(-1) != "/"
+                @templateDir=@templateDir + "/"
+        else
+            @templateDir = undefined
 
     compile: (data, path, callback) ->
+        if (@templateDir != undefined) and (path.indexOf(@templateDir) != -1)
+            path = path.slice(@templateDir.length)
         head = "<script type='text/ng-template' id='"+path+"'>\n"
         tail = "</script>\n"
         callback null, head + data + tail

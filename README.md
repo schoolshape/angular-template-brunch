@@ -4,7 +4,7 @@ concentrate all html to a javascript template
 ## Usage
 do manual install:
 
-* add
+* add this to package.json of your brunch app
 `"angular-template-brunch": "git+ssh://git@github.com:wgjtyu/angular-template-brunch.git"`.
 
 ## License

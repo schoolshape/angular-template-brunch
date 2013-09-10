@@ -1,3 +1,4 @@
+//FUTURE: change to index.spec.coffee
 describe('Plugin', function() {
   var plugin;
 
@@ -9,7 +10,7 @@ describe('Plugin', function() {
     var path = 'dev/test/test.html';
     var data = 'html';
     var callback = function(error, html){
-      expect(html).to.equal("<script type='text/ng-template' id='dev/test/test.html'>\nhtml</script>\n");
+      expect(html).to.equal("<script type='text/ng-template' id='dev/test/test.html'>html</script>");
     }
     plugin.compile(data, path, callback);
   });
@@ -20,7 +21,7 @@ describe('Plugin', function() {
     var path = undefined;
     var data = 'html';
     var callback = function(error, html){
-      expect(html).to.equal("<script type='text/ng-template' id='login/login.html'>\nhtml</script>\n");
+      expect(html).to.equal("<script type='text/ng-template' id='login/login.html'>html</script>");
     }
 
     path = 'app/login/login.html';

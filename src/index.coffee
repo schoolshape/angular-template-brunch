@@ -1,16 +1,17 @@
 module.exports = class HtmlTempalate
-    brunchPlugin: yes
-    type: 'template'
-    extension: 'html'
+
+    brunchPlugin : yes
+    type         : 'template'
+    extension    : 'html'
 
     constructor: (config) ->
-        if config?.plugins?.ngTemplate != undefined
-            @templateDir = config.plugins.ngTemplate.template
-        else
-            @templateDir = undefined
+        @templateDir = config?.plugins?.ngTemplate?.template ? ""
 
     compile: (data, path, callback) ->
-        path = path.replace @templateDir, ''
-        head = "<script type='text/ng-template' id='"+path+"'>\n"
-        tail = "</script>\n"
-        callback null, head + data + tail
+        try
+            path   = path.replace @templateDir, ''
+            result = "<script type='text/ng-template' id='#{path}'>#{data}</script>"
+        catch err
+            error  = "Template minify failed on #{path}: #{err}"
+        process.nextTick ->
+            callback error, result
